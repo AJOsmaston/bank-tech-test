@@ -18,7 +18,10 @@ describe ('Bank Tests', () => {
 
   describe ('Withdraw', () => {
     it('allows a withdrawal', () => {
-      
+      this.test_balance -= 5
+      this.bank.withdraw(5)
+
+      expect(this.bank.balance).toEqual(this.test_balance)
     })
   })
 })
