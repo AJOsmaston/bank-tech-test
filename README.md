@@ -12,28 +12,31 @@ Deposits, withdrawal.
 Account statement (date, amount, balance) printing.  
 Data can be kept in memory (it doesn't need to be stored to a database or anything).  
 ```
-### User Stories
-
+## User Stories
+### Basic
 ```
-As a customer
-So that I can keep my money safe
-I want to be able to deposit
-
-As a customer
-so that I can spend my money
-I'd like to be able to withdraw
-
-As a customer
-so that I can keep track of my money
-I'd like to be able to check my balance
-
+As a customer  
+So that I can keep my money safe  
+I want to be able to deposit my money  
 ```
+```
+As a customer  
+so that I can spend my money   
+I'd like to be able to withdraw my money  
+```
+```
+As a customer  
+so that I can keep track of my money  
+I'd like to be able to check my balance  
+```
+### Advanced
 
 ```
 As a bank owner
 so that I can provide meaningful reports
 I'd like the time of the deposit and withdrawal to be recorded
-
+```
+```
 As a customer
 so that I can monitor my budget
 I'd like to be able to see an account statement

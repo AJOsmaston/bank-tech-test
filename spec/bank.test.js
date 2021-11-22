@@ -1,9 +1,13 @@
 const Bank = require('../lib/bank')
-let test_bank = new Bank
+let bank = new Bank
 
-describe ('Testing', () => {
-  it('runs test', () => {
-    expect(test_bank.number).toEqual(1)
+describe ('Deposit', () => {
+  it('allows a deposit', () => {
+    let balance = bank.balance 
+    balance += 5
+    bank.deposit(5)
+
+    expect(bank.balance).toEqual(balance)
   })
 });
 
