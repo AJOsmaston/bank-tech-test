@@ -36,5 +36,13 @@ describe('Bank Tests', () => {
       this.bank.deposit(5);
       expect(this.bank.deposit_log).toContain(default_formatted_date)
     });
+
+    it('exists on a withdrawal', () => {
+      jest.spyOn(global.Date, 'now').mockReturnValue(0);
+      let default_formatted_date = '01/01/1970'
+
+      this.bank.withdraw(5);
+      expect(this.bank.withdrawal_log).toContain(default_formatted_date)
+    })
   });
 });
