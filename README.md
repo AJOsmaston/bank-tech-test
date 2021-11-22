@@ -1,19 +1,49 @@
-# Anthony's Bank tech test (JS)
+# Anthony's Bank Tech Test (JS)
 
 ## Introduction
 
 Welcome to my attempt at the week 10 Makers Bank Tech test.
 
-### Requirements
+## Setup
+-----
 
-```
-You should be able to interact with your code via a REPL like IRB or the JavaScript console.  (You don't need to implement a command line interface that takes input from STDIN.)  
-Deposits, withdrawal.  
-Account statement (date, amount, balance) printing.  
-Data can be kept in memory (it doesn't need to be stored to a database or anything).  
-```
+* Clone the repository  
+`git clone `
+* Install the dependencies  
+`npm install`
+* Open the REPL  
+`node`
+* Require the account file and save to a variable  
+`const Account = require('./lib/account')`
+* Instantiate the class  
+`const bank = new Account`
+* Deposit money using .deposit  
+`bank.deposit(100)`
+* Withdraw money using .withdraw  
+`bank.withdraw(100)`
+* Generate a report using .statement  
+`bank.statement()`
+## Misc
+-----
+
+* To run the linter  
+`npm run lint`
+* To run the tests  
+`npm run test`
+* To check code coverage  
+`npm run coverage`
+
+### Requirements
+-----
+
+* You should be able to interact with your code via a REPL like IRB or the JavaScript console.  (You don't need to implement a command line interface that takes input from STDIN.)  
+* Deposits, withdrawal.  
+* Account statement (date, amount, balance) printing.  
+* Data can be kept in memory (it doesn't need to be stored to a database or anything).  
+
+-----
+
 ## User Stories
-### Basic
 ```
 As a customer  
 So that I can keep my money safe  
@@ -37,10 +67,9 @@ I'd like the time of the deposit and withdrawal to be recorded
 ```
 As a customer
 so that I can monitor my budget
-I'd like to be able to see an account statement
-
+I'd like to be able to see an detailed account statement
 ```
-
+-----
 
 <details> 
   <summary>View the given specification</summary> 
