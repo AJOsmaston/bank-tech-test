@@ -10,7 +10,7 @@ describe('Account', () => {
     this.test_balance = this.account.balance;
   });
 
-  describe('Deposit', () => {
+  describe('#deposit', () => {
     it('allows a deposit', () => {
       this.test_balance += 5;
       this.account.deposit(5);
@@ -19,7 +19,7 @@ describe('Account', () => {
     });
   });
 
-  describe('Withdraw', () => {
+  describe('#withdraw', () => {
     it('allows a withdrawal', () => {
       this.test_balance -= 5;
       this.account.withdraw(5);
@@ -27,4 +27,13 @@ describe('Account', () => {
       expect(this.account.balance).toEqual(this.test_balance);
     });
   });
+
+  describe('#statement', () => {
+    it('returns a statement', () => {
+      let example_output = 'example'
+      jest.spyOn(this.mock_account_log, 'statement').mockReturnValue(['example']);
+
+      expect(this.account.statement()).toContain(example_output)
+    })
+  })
 });

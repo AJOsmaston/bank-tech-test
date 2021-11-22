@@ -49,11 +49,11 @@ describe('Account Log', () => {
       jest.spyOn(global.Date, 'now').mockReturnValue(1673654400000);
       this.account_log.withdraw(500)
 
-      expect(this.account_log.statement).toEqual([
-        "date || credit || debit ",
-        "14/01/2023 || || 500.00 ",
-        "13/01/2023 || 2000.00 || ",
-        "10/01/2023 || 1000.00 || "
+      expect(this.account_log.statement()).toEqual([
+        "date || credit || debit || balance",
+        "14/01/2023 || || 500.00 || 2500.00",
+        "13/01/2023 || 2000.00 || || 3000.00",
+        "10/01/2023 || 1000.00 || || 1000.00"
       ])
     })
   })
