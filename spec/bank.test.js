@@ -1,13 +1,24 @@
 const Bank = require('../lib/bank')
-let bank = new Bank
 
-describe ('Deposit', () => {
-  it('allows a deposit', () => {
-    let balance = bank.balance 
-    balance += 5
-    bank.deposit(5)
 
-    expect(bank.balance).toEqual(balance)
+describe ('Bank Tests', () => {
+  beforeEach (() => {
+    this.bank = new Bank
+    this.test_balance = this.bank.balance 
   })
-});
+  
+  describe ('Deposit', () => {
+    it('allows a deposit', () => {
+      this.test_balance += 5
+      this.bank.deposit(5)
 
+      expect(this.bank.balance).toEqual(this.test_balance)
+    })
+  });
+
+  describe ('Withdraw', () => {
+    it('allows a withdrawal', () => {
+      
+    })
+  })
+})
