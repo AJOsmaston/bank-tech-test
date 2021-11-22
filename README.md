@@ -29,13 +29,12 @@ As a customer
 so that I can keep track of my money  
 I'd like to be able to check my balance  
 ```
-### Advanced
-
 ```
 As a bank owner
 so that I can provide meaningful reports
 I'd like the time of the deposit and withdrawal to be recorded
 ```
+## Advanced
 ```
 As a customer
 so that I can monitor my budget
