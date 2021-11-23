@@ -64,7 +64,7 @@ I'd like the time of the deposit and withdrawal to be recorded
 ```
 As a customer
 so that I can monitor my budget
-I'd like to be able to see an detailed account statement
+I'd like to be able to see a detailed account statement
 ```
 
 ## Evaluation
