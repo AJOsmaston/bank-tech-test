@@ -1,8 +1,8 @@
-const Withdraw = require('../lib/withdraw')
+const WithdrawLog = require('../lib/withdraw_log')
 
 describe('Withdraw', () => {
   beforeEach(() => {
-    this.withdraw = new Withdraw();
+    this.withdraw = new WithdrawLog();
     this.default_formatted_date = '01/01/1970';
   })
 

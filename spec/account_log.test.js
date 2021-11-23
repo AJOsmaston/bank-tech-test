@@ -1,13 +1,13 @@
 const AccountLog = require('../lib/account_log')
-const Withdraw = require('../lib/withdraw')
-jest.mock('../lib/withdraw')
-const Deposit = require('../lib/deposit')
-jest.mock('../lib/deposit')
+const WithdrawLog = require('../lib/withdraw_log')
+jest.mock('../lib/withdraw_log')
+const DepositLog = require('../lib/deposit_log')
+jest.mock('../lib/deposit_log')
 
 describe('Account Log', () => {
   beforeEach(() => {
-    this.withdraw_mock = new Withdraw()
-    this.deposit_mock = new Deposit()
+    this.withdraw_mock = new WithdrawLog()
+    this.deposit_mock = new DepositLog()
     this.account_log = new AccountLog(
       this.withdraw_mock, 
       this.deposit_mock

@@ -1,8 +1,8 @@
-const Deposit = require('../lib/deposit')
+const DepositLog = require('../lib/deposit_log')
 
 describe('Deposit', () => {
   beforeEach(() => {
-    this.deposit = new Deposit();
+    this.deposit = new DepositLog();
     this.default_formatted_date = '01/01/1970';
   })
 
