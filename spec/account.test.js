@@ -1,11 +1,11 @@
 const Account = require('../lib/account');
-const AccountLog = require('../lib/account_log')
+const AccountLog = require('../lib/account_log');
 
-jest.mock('../lib/account_log')
+jest.mock('../lib/account_log');
 
 describe('Account', () => {
   beforeEach(() => {
-    this.mock_account_log = new AccountLog
+    this.mock_account_log = new AccountLog();
     this.account = new Account(this.mock_account_log);
     this.test_balance = this.account.balance;
   });
@@ -30,11 +30,11 @@ describe('Account', () => {
 
   describe('#statement', () => {
     it('returns a statement', () => {
-      let example_output = 'example'
+      const example_output = 'example';
       jest.spyOn(this.mock_account_log, 'statement')
-      .mockReturnValue(['example']);
+        .mockReturnValue(['example']);
 
-      expect(this.account.statement()).toContain(example_output)
-    })
-  })
+      expect(this.account.statement()).toContain(example_output);
+    });
+  });
 });

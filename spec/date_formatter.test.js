@@ -1,7 +1,8 @@
-const DateFormatter = require('../lib/date_formatter')
+const DateFormatter = require('../lib/date_formatter');
+
 describe('DateFormatter', () => {
   beforeEach(() => {
-    this.date_formatter = new DateFormatter
+    this.date_formatter = new DateFormatter();
     this.default_formatted_date = '01/01/1970';
   });
 
@@ -11,10 +12,10 @@ describe('DateFormatter', () => {
       // 0 -> 01/01/1970
 
       expect(
-        this.date_formatter.getFormattedDate()
-        ).toEqual(
-          this.default_formatted_date
-        );
+        this.date_formatter.getFormattedDate(),
+      ).toEqual(
+        this.default_formatted_date,
+      );
     });
   });
 });
