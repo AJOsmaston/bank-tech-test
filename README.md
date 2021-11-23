@@ -15,7 +15,7 @@ I started by breaking down the problem into some user stories, which covers each
 -----
 
 * Clone the repository  
-`git clone `
+`git clone https://github.com/AJOsmaston/bank-tech-test.git`
 * Install the dependencies  
 `npm install`
 * Open the REPL  
