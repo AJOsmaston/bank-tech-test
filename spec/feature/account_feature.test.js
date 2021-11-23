@@ -1,4 +1,4 @@
-const Account = require('../lib/account');
+const Account = require('../../lib/account');
 
 describe('Feature test', () => {
   it('runs the example', () => {

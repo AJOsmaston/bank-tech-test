@@ -4,9 +4,12 @@
 
 Welcome to my attempt at the week 10 Makers Bank Tech test. I decided to tackle this problem using vanilla javascript, with jest as my testing library and eslint as my linter.
 
-I started by breaking down the problem into some user stories, which covers each part of the requirements (please see below). I decided on two classes - 
+I started by breaking down the problem into some user stories, which covers each part of the requirements (please see below). I decided on five classes - 
 * a basic account class, that tracks the balance and acts as a controller for the account_log class
 * an account_log class, that deals with capturing the data and storing the data in the desired format.
+* a deposit_log class, that is created by the account_log class and formats the deposits.
+* a withdraw_log class, that is created by the account_log class and formats the withdrawals.
+* a date_formatter class, that is created by the account_log class and exists only to grab the current date and format it in the correct way.
 
 ## Setup
 -----
@@ -67,13 +70,15 @@ I'd like to be able to see an detailed account statement
 ## Evaluation
 -----
 
-As it stands, currently both classes calculate and keep track of the balance. Although this seems non-sensical, my thought process was that any validation that needed to be done, could be done at the level of the account (rather than the log) - i.e if you wanted to stop the user taking out money that they didn't have, you could implement this in the account, which would mean you could easily stop the report from being generated preemptively. 
+On my initial approach, I planned for two classes - the account and account_log class, but ended up splitting down account_log as it had too many functions and was in violation of the SRP. Thus 5 classes were born. Potentially, I could have combined the deposit_log and withdraw_log classes with as a transaction_log class with multiple if/elses to handle the differences, however, I think it allows for more flexibility in future with the two seperated into seperate classes.
 
-Further, and on the topic of validation, I did not include any sort of checks to user input. I'm assuming that the input is standardised (i.e. you cannot  
+I did not include any sort of checks for validation of user input. I'm assuming that the input is standardised (i.e. you cannot  
 `bank.deposit(a fish)`  
-for example). This could be effectively implemented inside the account class, at the level of the deposit/withdraw functions. This said, however, you can deposit and withdraw decimal amounts, and it will calculate and store the correct amounts, whilst still only displaying the correct decimal places on the report (again this validation could be added at the deposit/withdraw level to stop decimals beyond in the hundredths if necessary).
+for example). This could be effectively implemented inside the account class, at the level of the deposit/withdraw functions. I have not included this in the attempt as it has not been directly asked for - these checks may be occuring on levels above this program. 
 
-Finally, the statement() function of account currently simply returns what is stored in the account_log class. I did this so that, if the data wanted to be manipulated (i.e console.logged), this could be acheived here. It is currently output as an array, but this made the REPL formatting come as close as I could get it to the required output.
+This said, however, you can deposit and withdraw decimal amounts, and it will calculate and store the correct amounts, whilst still only displaying the correct decimal places on the report (again this validation could be added at the deposit/withdraw level to stop decimals beyond in the hundredths if necessary).
+
+Finally, the statement() function of account currently simply returns what is stored in the account_log class. I did this so that, if the data wanted to be manipulated (i.e console.logged or changed from being an array), this could be acheived here. It is currently output as an array, but this made the REPL formatting come as close as I could get it to the required output.
 
 ## Misc
 -----
@@ -84,7 +89,7 @@ Finally, the statement() function of account currently simply returns what is st
 `npm run test`  
 <br>
 <div>
-  <img style='width:250px' src='./public/test_cov.png' />
+  <img style='width:300px' src='./public/test_cov.png' />
 </div>
 <br>
 
@@ -96,8 +101,6 @@ Finally, the statement() function of account currently simply returns what is st
 </div>
 <br>
 
-* Please note that the uncovered line seems to be the dependency injection for account_log, which gives the 0% branch figure.  
-<br>
 
 <details> 
   <summary>View the given specification</summary> 
