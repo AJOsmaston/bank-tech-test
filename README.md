@@ -85,8 +85,6 @@ Overall, I really enjoyed this project. Attempting it in javascript was a challe
 ## Misc
 -----
 
-* To run the linter  
-`npm run lint`
 * To run the tests  
 `npm run test`  
 <br>
@@ -103,6 +101,10 @@ Overall, I really enjoyed this project. Attempting it in javascript was a challe
 </div>
 <br>
 
+* To run the linter  
+`npm run lint`
+
+-----
 
 <details> 
   <summary>View the given specification</summary> 
