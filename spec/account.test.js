@@ -31,7 +31,8 @@ describe('Account', () => {
   describe('#statement', () => {
     it('returns a statement', () => {
       let example_output = 'example'
-      jest.spyOn(this.mock_account_log, 'statement').mockReturnValue(['example']);
+      jest.spyOn(this.mock_account_log, 'statement')
+      .mockReturnValue(['example']);
 
       expect(this.account.statement()).toContain(example_output)
     })

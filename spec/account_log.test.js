@@ -11,18 +11,15 @@ describe('Account Log', () => {
   })
 
   describe('Date Logs', () => {
-    it('exists on a deposit', () => {
-      jest.spyOn(global.Date, 'now').mockReturnValue(0);
-      this.account_log.date_deposit();
-
-      expect(this.account_log.deposit_date_log).toContain(this.default_formatted_date);
-    });
-
     it('exists on a withdrawal', () => {
       jest.spyOn(global.Date, 'now').mockReturnValue(0);
       this.account_log.date_withdraw();
 
-      expect(this.account_log.withdrawal_date_log).toContain(this.default_formatted_date);
+      expect(
+        this.account_log.withdrawal_date_log
+        ).toContain(
+          this.default_formatted_date
+      );
     });
   });
 
@@ -43,10 +40,13 @@ describe('Account Log', () => {
   describe('#produce_statement', () => {
     it('produces formatted statement', () => {
       jest.spyOn(global.Date, 'now').mockReturnValue(1673308800000);
+      // 1673308800000 -> 10/01/2023
       this.account_log.deposit(1000)
       jest.spyOn(global.Date, 'now').mockReturnValue(1673568000000);
+      // 1673568000000 -> 13/01/2023
       this.account_log.deposit(2000)
       jest.spyOn(global.Date, 'now').mockReturnValue(1673654400000);
+      // 1673654400000 -> 14/01/2023
       this.account_log.withdraw(500)
 
       expect(this.account_log.statement()).toEqual([
