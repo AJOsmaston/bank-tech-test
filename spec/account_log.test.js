@@ -3,18 +3,21 @@ const WithdrawLog = require('../lib/withdraw_log')
 jest.mock('../lib/withdraw_log')
 const DepositLog = require('../lib/deposit_log')
 jest.mock('../lib/deposit_log')
+const DateFormatter = require('../lib/date_formatter')
+jest.mock('../lib/date_formatter')
+
 
 describe('Account Log', () => {
   beforeEach(() => {
-    this.withdraw_mock = new WithdrawLog()
-    this.deposit_mock = new DepositLog()
+    this.withdraw_mock = new WithdrawLog();
+    this.deposit_mock = new DepositLog();
+    this.date_formatter_mock = new DateFormatter();
     this.account_log = new AccountLog(
       this.withdraw_mock, 
       this.deposit_mock
-      )
-    this.default_formatted_date = '01/01/1970';
-    this.formatted_deposit_row = "10/01/2023 || 500.00 || || 1000.00"
-    this.formatted_withdraw_row = "10/01/2023 || || 500.00 || 1000.00"
+      );
+    this.formatted_deposit_row = "10/01/2023 || 500.00 || || 1000.00";
+    this.formatted_withdraw_row = "10/01/2023 || || 500.00 || 1000.00";
   });
 
   afterEach(() => {
@@ -44,20 +47,6 @@ describe('Account Log', () => {
       expect(this.account_log.statement()).toContain(
         "10/01/2023 || || 500.00 || 1000.00",
       );
-    });
-  });
-
-  describe('#formats date', () => {
-    it('produces a formatted date', () => {
-      jest.spyOn(global.Date, 'now').mockReturnValue(0);
-      // 0 -> 01/01/1970
-      let fulldate = new Date(Date.now());
-
-      expect(
-        this.account_log.formattedDate(fulldate)
-        ).toEqual(
-          this.default_formatted_date
-        );
     });
   });
 });
