@@ -29,7 +29,7 @@ describe('Deposit', () => {
 
   describe('#format_deposit', () => {
     it('correctly formats a deposit', () => {
-      this.deposit.log.push(1000)
+      this.deposit.add(1000)
       this.deposit.date_deposit(this.default_formatted_date);
       expect(this.deposit.format_deposit(1000))
         .toEqual(

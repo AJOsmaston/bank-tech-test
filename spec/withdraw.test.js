@@ -29,7 +29,7 @@ describe('Withdraw', () => {
 
   describe('#format_withdraw', () => {
     it('correctly formats a withdrawal', () => {
-      this.withdraw.log.push(1000)
+      this.withdraw.add(1000)
       this.withdraw.date_withdraw(this.default_formatted_date);
       expect(this.withdraw.format_withdraw(1000))
         .toEqual(

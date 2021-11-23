@@ -1,60 +1,63 @@
 const AccountLog = require('../lib/account_log')
+const Withdraw = require('../lib/withdraw')
+jest.mock('../lib/withdraw')
+const Deposit = require('../lib/deposit')
+jest.mock('../lib/deposit')
 
 describe('Account Log', () => {
   beforeEach(() => {
-    this.account_log = new AccountLog
+    this.withdraw_mock = new Withdraw()
+    this.deposit_mock = new Deposit()
+    this.account_log = new AccountLog(
+      this.withdraw_mock, 
+      this.deposit_mock
+      )
     this.default_formatted_date = '01/01/1970';
-  })
+    this.formatted_deposit_row = "10/01/2023 || 500.00 || || 1000.00"
+    this.formatted_withdraw_row = "10/01/2023 || || 500.00 || 1000.00"
+  });
 
   afterEach(() => {
     jest.spyOn(global.Date, 'now').mockRestore();
-  })
+  });
 
-  describe('Date Logs', () => {
-    it('exists on a withdrawal', () => {
-      jest.spyOn(global.Date, 'now').mockReturnValue(0);
-      this.account_log.date_withdraw();
-
-      expect(
-        this.account_log.withdrawal_date_log
-        ).toContain(
-          this.default_formatted_date
+  describe('#deposit', () => {
+    it('updates the statement', () => {
+      jest.spyOn(this.deposit_mock, 'format_deposit').mockReturnValue(this.formatted_deposit_row);
+      
+      this.account_log.deposit();
+      expect(this.account_log.statement()).toContain(
+        "10/01/2023 || 500.00 || || 1000.00",
       );
     });
   });
 
-  describe('Amount Logs', () => {
-    it('exists on a deposit', () => {
-      this.account_log.deposit(10)
-
-      expect(this.account_log.deposit_log).toContain(10)
-    });
-
-    it('exists on a withdrawal', () => {
-      this.account_log.withdraw(10)
-
-      expect(this.account_log.withdrawal_log).toContain(10)
+  describe('#withdraw', () => {
+    it('updates the statement', () => {
+      jest.spyOn(
+        this.withdraw_mock, 'format_withdraw'
+      ).mockReturnValue(
+        this.formatted_withdraw_row
+      );
+      
+      this.account_log.withdraw();
+      expect(this.account_log.statement()).toContain(
+        "10/01/2023 || || 500.00 || 1000.00",
+      );
     });
   });
 
-  describe('#produce_statement', () => {
-    it('produces formatted statement', () => {
-      jest.spyOn(global.Date, 'now').mockReturnValue(1673308800000);
-      // 1673308800000 -> 10/01/2023
-      this.account_log.deposit(1000)
-      jest.spyOn(global.Date, 'now').mockReturnValue(1673568000000);
-      // 1673568000000 -> 13/01/2023
-      this.account_log.deposit(2000)
-      jest.spyOn(global.Date, 'now').mockReturnValue(1673654400000);
-      // 1673654400000 -> 14/01/2023
-      this.account_log.withdraw(500)
+  describe('#formats date', () => {
+    it('produces a formatted date', () => {
+      jest.spyOn(global.Date, 'now').mockReturnValue(0);
+      // 0 -> 01/01/1970
+      let fulldate = new Date(Date.now());
 
-      expect(this.account_log.statement()).toEqual([
-        "date || credit || debit || balance",
-        "14/01/2023 || || 500.00 || 2500.00",
-        "13/01/2023 || 2000.00 || || 3000.00",
-        "10/01/2023 || 1000.00 || || 1000.00"
-      ])
-    })
-  })
+      expect(
+        this.account_log.formattedDate(fulldate)
+        ).toEqual(
+          this.default_formatted_date
+        );
+    });
+  });
 });
